@@ -14,11 +14,8 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->bigIncrements('task_id');
-            $table->bigInteger('checklist_id');
-            $table->foreign('checklist_id')
-                ->references('id')->on('checklists')
-                ->onDelete('cascade');
+            $table->bigIncrements('id');
+            $table->integer('checklist_id');
             $table->string('message');
             $table->timestamps();
         });
