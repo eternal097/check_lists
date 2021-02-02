@@ -31,7 +31,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile') }}">{{ __('Profile') }}</a>
+                        <a class="nav-link" href="{{ route('checklists') }}">{{ __('Checklists') }}</a>
                     </li>
 
                     <li class="nav-item dropdown">

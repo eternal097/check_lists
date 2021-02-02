@@ -19,7 +19,9 @@ Route::get('/', function () {
 
 Route::get('/profile', 'ProfileController@show')->name('profile');
 
-Route::resource('/checklists', 'ChecklistController');
+Route::get('/checklists', 'ChecklistController@index')->name('checklists');
+
+Route::resource('checklist', 'ChecklistController');
 
 
 
