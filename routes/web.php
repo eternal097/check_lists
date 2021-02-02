@@ -11,12 +11,16 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Auth::routes();
-
 Route::get('/profile', 'ProfileController@show')->name('profile');
+
+Route::resource('/checklists', 'ChecklistController');
+
+
 
 
