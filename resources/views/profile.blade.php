@@ -13,10 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                        <p>Ваш уникальный идентификатор:{{$user->id}}</p>
-                        <p>Ваше имя:{{$user->name}}</p>
-                        <p>Ваш email:{{$user->email}}</p>
-                        <p>Дата регистрации:{{$user->created_at}}</p>
+                        <p>Your id:{{$user->id}}</p>
+                        <p>Your name:{{$user->name}}</p>
+                        <p>Your email:{{$user->email}}</p>
+                        <p>Date registration:{{$user->created_at}}</p>
                 </div>
             </div>
         </div>
