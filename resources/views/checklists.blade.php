@@ -32,9 +32,21 @@
             <div class="card mt-3">
                 <div class="card-header">Your checklists</div>
                 <div class="card-body">
-                    @foreach($checklists as $checklist)
-                        <p><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
-                    @endforeach
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        <div class="">
+                            @foreach($checklists as $checklist)
+                            <p><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
+                            <div>
+                                <form action="{{route('cheklist.update', $checklist->id)}}" method="POST">
+                                    @method('PUT')
+                                    @csrf
+                                    <input type="text" value="1" hidden>
+                                    <button></button>
+                                </form>
+                            </div>
+                            @endforeach  
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
