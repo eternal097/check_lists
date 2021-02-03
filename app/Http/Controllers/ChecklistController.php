@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreChecklist;
 use App\Checklist;
+use App\User;
 
 
 class ChecklistController extends Controller
@@ -27,7 +29,11 @@ class ChecklistController extends Controller
      */
     public function index()
     {
-        return view('cheklists');
+        $user_id = Auth::id();
+
+        $checklists = User::find($user_id)->checklists;
+
+        return view('checklists', compact('checklists'));
     }
 
     /**
@@ -46,11 +52,9 @@ class ChecklistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreChecklist $request)
     {
-        $validate = $request->validate([
-            'title' => 'required|max:255',
-        ]);
+        $validate = $request->validated();
 
         $id = Auth::id();
 

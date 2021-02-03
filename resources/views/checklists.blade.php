@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Your checklists</div>
+                <div class="card-header">Create Your checklists</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -27,6 +27,14 @@
                             <button class="btn btn-success" type="submit" id="bytton-addon2">Add checklist</button>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">Your checklists</div>
+                <div class="card-body">
+                    @foreach($checklists as $checklist)
+                        <p><a href="">{{$checklist->title}}</a></p>
+                    @endforeach
                 </div>
             </div>
         </div>
