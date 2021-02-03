@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Your checklists</div>
                 <div class="card-body">
-                    <form action="{{route('checklist.store')}}">
+                    <form action="{{route('checklist.store')}}" method="POST">
                         @csrf
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control form-control-lg" name="title"
