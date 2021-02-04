@@ -33,7 +33,7 @@
                 @if(count($checklists) != 0)
                 <div class="card-header">Your checklists</div>
                     @foreach($checklists as $checklist)
-                        <div class="card-body">
+                        <div class="card-body bg-white w-100">
                             <div class="w-100 d-flex align-items-center justify-content-between">
                                 <p class="lead mt-3 justify-content-between"><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
                                 <div class="w-100 d-flex align-items-center mr-3 justify-content-end ">
