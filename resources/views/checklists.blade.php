@@ -32,25 +32,21 @@
             <div class="card mt-3">
                 @if(count($checklists) != 0)
                 <div class="card-header">Your checklists</div>
-                    <div class="card-body">
-                        <div class="w-100 d-flex align-items-center justify-content-between">
-                            @foreach($checklists as $checklist)
-                            <p class="lead mt-3"><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
-                            @endforeach
-                            <div class="w-100 d-flex align-items-center mr-3 justify-content-end ">
-                                <form class="m-2" action="" method="POST">
-                                    @csrf
-                                    @method('')
-                                    <button class="btn btn-info" type="button" name="button">Edit</button>
-                                </form>
-                                <form action="{{route('checklist.destroy', $checklist->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" name="button">Delete</button>
-                                </form>
+                    @foreach($checklists as $checklist)
+                        <div class="card-body">
+                            <div class="w-100 d-flex align-items-center justify-content-between">
+                                <p class="lead mt-3 justify-content-between"><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
+                                <div class="w-100 d-flex align-items-center mr-3 justify-content-end ">
+                                    <a href="{{route('checklist.edit', $checklist->id)}}" class="btn btn-info mr-3">Edit</a>
+                                    <form action="{{route('checklist.destroy', $checklist->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit" name="button">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 @else
                 <div class="m-3">
                     <p>Here will be your checklists</p>

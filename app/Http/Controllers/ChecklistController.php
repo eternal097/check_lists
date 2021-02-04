@@ -83,9 +83,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Checklist $checklist)
     {
-        //
+        return view('checkedit')->with('checklist', $checklist);
     }
 
     /**
@@ -95,9 +95,13 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreChecklist $request, Checklist $checklist )
     {
-        //
+        $validate = $request->validated();
+
+        $checklist->update($request->all());
+
+        return redirect()->route('checklists');
     }
 
     /**
