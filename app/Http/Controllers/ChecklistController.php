@@ -106,8 +106,10 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Checklist $checklist)
     {
-        //
+        $checklist->delete();
+
+        return redirect()->route('checklists');
     }
 }

@@ -30,24 +30,32 @@
                 </div>
             </div>
             <div class="card mt-3">
+                @if(count($checklists) != 0)
                 <div class="card-header">Your checklists</div>
-                <div class="card-body">
-                    <div class="w-100 d-flex align-items-center justify-content-between">
-                        <div class="">
+                    <div class="card-body">
+                        <div class="w-100 d-flex align-items-center justify-content-between">
                             @foreach($checklists as $checklist)
-                            <p><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
-                            <div>
-                                <form action="{{route('cheklist.update', $checklist->id)}}" method="POST">
-                                    @method('PUT')
+                            <p class="lead mt-3"><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
+                            @endforeach
+                            <div class="w-100 d-flex align-items-center mr-3 justify-content-end ">
+                                <form class="m-2" action="" method="POST">
                                     @csrf
-                                    <input type="text" value="1" hidden>
-                                    <button></button>
+                                    @method('')
+                                    <button class="btn btn-info" type="button" name="button">Edit</button>
+                                </form>
+                                <form action="{{route('checklist.destroy', $checklist->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit" name="button">Delete</button>
                                 </form>
                             </div>
-                            @endforeach  
                         </div>
                     </div>
+                @else
+                <div class="m-3">
+                    <p>Here will be your checklists</p>
                 </div>
+                @endif
             </div>
         </div>
     </div>
