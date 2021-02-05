@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreChecklist;
-use App\Checklist;
-use App\User;
 
-
-class ChecklistController extends Controller
+class TaskController extends Controller
 {
 
     /**
@@ -29,11 +24,7 @@ class ChecklistController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-
-        $checklists = User::find($user_id)->checklists;
-
-        return view('checklists', compact('checklists'));
+        return view('tasks');
     }
 
     /**
@@ -52,18 +43,9 @@ class ChecklistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreChecklist $request)
+    public function store(Request $request)
     {
-        $validate = $request->validated();
-
-        $id = Auth::id();
-
-        $checklist = Checklist::create([
-            'user_id' => $id,
-            'title' => $request->title,
-        ]);
-
-        return redirect()->route('checklists');
+        //
     }
 
     /**
@@ -72,9 +54,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Checklist $checklist)
+    public function show($id)
     {
-        return redirect()->route('tasks', [$checklist]);
+        //
     }
 
     /**
@@ -83,9 +65,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Checklist $checklist)
+    public function edit($id)
     {
-        return view('checkedit')->with('checklist', $checklist);
+        //
     }
 
     /**
@@ -95,13 +77,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreChecklist $request, Checklist $checklist )
+    public function update(Request $request, $id)
     {
-        $validate = $request->validated();
-
-        $checklist->update($request->all());
-
-        return redirect()->route('checklists');
+        //
     }
 
     /**
@@ -110,10 +88,8 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Checklist $checklist)
+    public function destroy($id)
     {
-        $checklist->delete();
-
-        return redirect()->route('checklists');
+        //
     }
 }
