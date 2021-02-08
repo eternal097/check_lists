@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTask;
+use App\Http\Controllers\ChecklistController;
+use App\Checklist;
+use App\Task;
 
 class TaskController extends Controller
 {
-
+    private $id = 0;
     /**
      * Create a new controller instance.
      *
@@ -22,9 +26,10 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($checklist)
     {
-        return view('tasks');
+        $this->id = $checklist;
+        return view('tasks', compact('checklist'));
     }
 
     /**
@@ -45,7 +50,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        dd($request->get('id'));
     }
 
     /**

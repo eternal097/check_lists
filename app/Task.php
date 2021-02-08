@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    protected $guarded = [];
+
     public function checklist ()
     {
     	return $this->belongTo(Checklist:class, 'task_id', 'id');

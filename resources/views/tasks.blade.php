@@ -16,7 +16,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="" method="POST">
+                    <form action="{{route('task.store', ['id' => $checklist])}}" method="POST">
                         @csrf
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control form-control-lg" name="message"

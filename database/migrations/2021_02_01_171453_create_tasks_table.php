@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->integer('checklist_id');
             $table->string('message');
+            $table->boolean('completed');
             $table->timestamps();
         });
     }
