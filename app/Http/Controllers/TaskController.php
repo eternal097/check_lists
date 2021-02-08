@@ -48,10 +48,13 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTask $request)
     {
+        $validate = $request->validated();
 
-        dd($request->get('id'));
+        $checklist_id = $request->get('id');
+
+        dd($checklist_id);
     }
 
     /**
