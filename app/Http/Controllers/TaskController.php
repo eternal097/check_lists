@@ -54,7 +54,9 @@ class TaskController extends Controller
 
         $checklist_id = $request->get('id');
 
-        dd($checklist_id);
+        $task = Task::create([
+            
+        ]);
     }
 
     /**
