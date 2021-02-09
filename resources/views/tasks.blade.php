@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+          <!-- Add task form -->
             <div class="card">
                 <div class="card-header">Create Your Tasks</div>
                 <div class="card-body">
@@ -16,7 +17,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{route('task.store', ['id' => $checklist])}}" method="POST">
+                    <form action="{{route('task.store', ['id' => $checklist_id])}}" method="POST">
                         @csrf
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control form-control-lg" name="message"
@@ -28,6 +29,37 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <!-- Tasks card -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    Your tasks
+                </div>
+                @if(count($tasks) != 0)
+                <div class="card-body">
+                    @foreach($tasks as $task)
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="lead mt-1">{{$task->message}}</p>
+                        </div>
+                        <div class="col-2 pl-5">
+                            <a href="" class="btn btn-info mr-3">Edit</a>
+                        </div>
+                        <div class="col-2 pl-3">
+                          <form action="" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <button class="btn btn-danger" type="submit" name="button">Delete</button>
+                          </form>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                @else
+                <div class="m-3">
+                    <p>Here will be your task s</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>

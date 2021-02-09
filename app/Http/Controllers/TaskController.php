@@ -10,7 +10,6 @@ use App\Task;
 
 class TaskController extends Controller
 {
-    private $id = 0;
     /**
      * Create a new controller instance.
      *
@@ -26,10 +25,11 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($checklist)
+    public function index($checklist_id)
     {
-        $this->id = $checklist;
-        return view('tasks', compact('checklist'));
+        $tasks = Checklist::find($checklist_id)->tasks;
+
+        return view('tasks', compact('checklist_id', 'tasks'));
     }
 
     /**
@@ -55,8 +55,12 @@ class TaskController extends Controller
         $checklist_id = $request->get('id');
 
         $task = Task::create([
-            
+            'checklist_id' => $checklist_id,
+            'message' => $request->message,
+            'completed' => 0,
         ]);
+
+        return redirect()->route('tasks', ['id' => $checklist_id]);
     }
 
     /**
