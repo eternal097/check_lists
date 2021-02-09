@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTask;
 use App\Http\Controllers\ChecklistController;
 use App\Checklist;
 use App\Task;
+use App\User;
+
 
 class TaskController extends Controller
 {
@@ -27,9 +30,18 @@ class TaskController extends Controller
      */
     public function index($checklist_id)
     {
-        $tasks = Checklist::find($checklist_id)->tasks;
 
-        return view('tasks', compact('checklist_id', 'tasks'));
+        $user_checklists = User::find(Auth::id())->checklists;
+
+        if($user_checklists->contains($checklist_id)) {
+
+            $tasks = Checklist::find($checklist_id)->tasks;
+            return view('tasks', compact('checklist_id', 'tasks'));
+
+        } else {
+
+            return redirect()->route('checklists');
+        }
     }
 
     /**

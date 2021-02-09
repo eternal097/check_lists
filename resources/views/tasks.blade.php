@@ -57,7 +57,7 @@
                 </div>
                 @else
                 <div class="m-3">
-                    <p>Here will be your task s</p>
+                    <p>Here will be your tasks</p>
                 </div>
                 @endif
             </div>
