@@ -85,7 +85,16 @@ class ChecklistController extends Controller
      */
     public function edit(Checklist $checklist)
     {
-        return view('checkedit')->with('checklist', $checklist);
+        $user_checklists = User::find(Auth::id())->checklists;
+
+        if ($user_checklists->contains($checklist)) {
+
+            return view('checkedit')->with('checklist', $checklist);
+
+        } else {
+
+            return redirect()->route('checklists');
+        }
     }
 
     /**

@@ -33,7 +33,7 @@ class TaskController extends Controller
 
         $user_checklists = User::find(Auth::id())->checklists;
 
-        if($user_checklists->contains($checklist_id)) {
+        if ($user_checklists->contains($checklist_id)) {
 
             $tasks = Checklist::find($checklist_id)->tasks;
             return view('tasks', compact('checklist_id', 'tasks'));

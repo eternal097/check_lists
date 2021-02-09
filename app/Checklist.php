@@ -10,10 +10,10 @@ class Checklist extends Model
 
     public function user ()
     {
-    	return $this->belongTo(User::class, 'user_id', 'id');
+    	return $this->belongTo(User::class);
     }
 
-    public function tasks() 
+    public function tasks()
     {
         return $this->hasMany(Task::class);
     }
