@@ -10,6 +10,6 @@ class Task extends Model
 
     public function checklist ()
     {
-    	return $this->belongTo(Checklist::class);
+    	return $this->belongsTo(Checklist::class);
     }
 }

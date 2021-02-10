@@ -30,21 +30,17 @@ class TaskController extends Controller
      */
     public function index($checklist_id)
     {
+         $user_checklists = User::find(Auth::id())->checklists;
 
-        // $user_checklists = User::find(Auth::id())->checklists;
-        //
-        // if ($user_checklists->contains($checklist_id)) {
-        //
-        //     $tasks = Checklist::find($checklist_id)->tasks;
-        //     return view('tasks', compact('checklist_id', 'tasks'));
-        //
-        // } else {
-        //
-        //     return redirect()->route('checklists');
-        // }
+         if ($user_checklists->contains($checklist_id)) {
 
-        $tasks = Checklist::find($checklist_id)->tasks;
-        return view('tasks', compact('checklist_id', 'tasks'));
+             $tasks = Checklist::find($checklist_id)->tasks;
+             return view('tasks', compact('checklist_id', 'tasks'));
+
+         } else {
+
+             return redirect()->route('checklists');
+         }
     }
 
     /**
@@ -107,15 +103,13 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTask $request, $id)
+    public function update(Request $request, Task $task)
     {
-        $validate = $request->validated();
-
-        $task = Task::find($id);
-
         $task->update($request->all());
 
-        return redirect()->route('tasks', [$id]);
+        $checklist_id = $task->checklist->id;
+
+        return redirect()->route('tasks', [$checklist_id]);
     }
 
     /**
