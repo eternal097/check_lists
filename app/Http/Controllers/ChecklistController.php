@@ -72,9 +72,9 @@ class ChecklistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Checklist $checklist)
+    public function show($id)
     {
-        return redirect()->route('tasks', [$checklist]);
+        return redirect()->route('tasks', [$id]);
     }
 
     /**

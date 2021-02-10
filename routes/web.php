@@ -21,7 +21,7 @@ Route::get('/profile', 'ProfileController@show')->name('profile');
 
 Route::get('/checklists', 'ChecklistController@index')->name('checklists');
 
-Route::get('/checklists/{id}/tasks/', 'TaskController@index')->name('tasks');
+Route::get('/checklists/{id}/tasks', 'TaskController@index')->name('tasks');
 
 Route::resource('checklist', 'ChecklistController');
 

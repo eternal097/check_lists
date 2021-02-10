@@ -31,17 +31,20 @@ class TaskController extends Controller
     public function index($checklist_id)
     {
 
-        $user_checklists = User::find(Auth::id())->checklists;
+        // $user_checklists = User::find(Auth::id())->checklists;
+        //
+        // if ($user_checklists->contains($checklist_id)) {
+        //
+        //     $tasks = Checklist::find($checklist_id)->tasks;
+        //     return view('tasks', compact('checklist_id', 'tasks'));
+        //
+        // } else {
+        //
+        //     return redirect()->route('checklists');
+        // }
 
-        if ($user_checklists->contains($checklist_id)) {
-
-            $tasks = Checklist::find($checklist_id)->tasks;
-            return view('tasks', compact('checklist_id', 'tasks'));
-
-        } else {
-
-            return redirect()->route('checklists');
-        }
+        $tasks = Checklist::find($checklist_id)->tasks;
+        return view('tasks', compact('checklist_id', 'tasks'));
     }
 
     /**
@@ -72,7 +75,7 @@ class TaskController extends Controller
             'completed' => 0,
         ]);
 
-        return redirect()->route('tasks', ['id' => $checklist_id]);
+        return back();
     }
 
     /**
@@ -92,9 +95,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        //
+        return view('taskedit', compact('task'));
     }
 
     /**
@@ -104,9 +107,15 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTask $request, $id)
     {
-        //
+        $validate = $request->validated();
+
+        $task = Task::find($id);
+
+        $task->update($request->all());
+
+        return redirect()->route('tasks', [$id]);
     }
 
     /**
@@ -115,8 +124,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        return back();
     }
 }
