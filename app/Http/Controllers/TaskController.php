@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTask;
-use App\Http\Controllers\ChecklistController;
 use App\Checklist;
 use App\Task;
 use App\User;
@@ -39,7 +38,7 @@ class TaskController extends Controller
 
          } else {
 
-             return redirect()->route('checklists');
+             return back();
          }
     }
 

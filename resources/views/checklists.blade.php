@@ -38,14 +38,14 @@
                 @if(count($checklists) != 0)
                 <div class="card-body">
                     @foreach($checklists as $checklist)
-                    <div class="row">
-                        <div class="col-8">
+                    <div class="row mt-1">
+                        <div class="col-9">
                             <p class="lead mt-1"><a href="{{route('checklist.show', $checklist->id)}}">{{$checklist->title}}</a></p>
                         </div>
-                        <div class="col-2 pl-5">
+                        <div class="col-1">
                             <a href="{{route('checklist.edit', $checklist->id)}}" class="btn btn-info mr-3">Edit</a>
                         </div>
-                        <div class="col-2 pl-3">
+                        <div class="col-1">
                           <form action="{{route('checklist.destroy', $checklist->id)}}" method="POST">
                               @csrf
                               @method('DELETE')

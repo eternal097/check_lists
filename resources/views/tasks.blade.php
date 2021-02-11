@@ -50,24 +50,26 @@
                                             </svg>
                                         @endif
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-8">
                                         <p class="lead">{{$task->message}}</p>
                                     </div>
                                     <div class="col-1 mr-4">
-                                      <form action="{{route('task.update', $task->id)}}" method="POST">
-                                          @csrf
-                                          @method('PUT')
-                                          @if($task->completed == 0)
-                                              <input type="text" name="completed" value="1" hidden>
-                                              <button class="btn btn-success" type="submit">Success</button>
-                                          @else
-                                              <input type="text" name="completed" value="0" hidden>
-                                              <button class="btn btn-warning" type="submit">Success</button>
-                                          @endif
+                                        @if($task->completed == 0)
+                                        <form action="{{route('task.update', $task->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                            <input type="text" name="completed" value="1" hidden>
+                                            <button class="btn btn-success" type="submit">Success</button>
+                                        </form>
+                                        @else
+                                        <form action="{{route('task.update', $task->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                            <input type="text" name="completed" value="0" hidden>
+                                            <button class="btn btn-warning" type="submit">Success</button>
+                                        </form>
+                                        @endif
                                       </form>
-                                    </div>
-                                    <div class="col-1 ml-1">
-                                        <a href="{{route('task.edit', $task->id)}}" class="btn btn-info">Edit</a>
                                     </div>
                                     <div class="col-1">
                                       <form action="{{route('task.destroy', $task->id)}}" method="POST">

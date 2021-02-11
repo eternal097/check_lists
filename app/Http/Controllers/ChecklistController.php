@@ -93,7 +93,7 @@ class ChecklistController extends Controller
 
         } else {
 
-            return redirect()->route('checklists');
+            return back();
         }
     }
 
