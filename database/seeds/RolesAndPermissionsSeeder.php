@@ -28,6 +28,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $admin->givePermissionTo('manage users');
 
         $superAdmin = Role::create(['name' => 'super-admin']);
+        $superAdmin->givePermissionTo(Permission::all());
 
         $user = Role::create(['name' => 'user']);
 
@@ -35,24 +36,24 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // create demo users
         $user1 = User::create([
-            'name' => 'Example Admin User',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('secret123'),
-        ]);
-        $user1->assignRole($admin);
-
-        $user2 = User::create([
-            'name' => 'Example User',
-            'email' => 'user@example.com',
-            'password' => Hash::make('secret123'),
-        ]);
-        $user2->assignRole($user);
-
-        $user3 = User::create([
             'name' => 'Example Super-Admin User',
             'email' => 'superadmin@example.com',
             'password' => Hash::make('secret123'),
         ]);
-        $user3->assignRole($superAdmin);
+        $user1->assignRole($superAdmin);
+
+        $user2 = User::create([
+            'name' => 'Example Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('secret123'),
+        ]);
+        $user2->assignRole($admin);
+
+        $user3 = User::create([
+            'name' => 'Example Admin User 2',
+            'email' => 'admin2@example.com',
+            'password' => Hash::make('secret123'),
+        ]);
+        $user3->assignRole($admin);
     }
 }

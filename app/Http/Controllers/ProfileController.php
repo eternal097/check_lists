@@ -23,7 +23,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show(Request $request)
+    public function show()
     {
         $user = Auth::user();
 

@@ -10,13 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Authentication
 Auth::routes();
 
+//Redirect start app
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('profile');
 })->name('home');
 
+//User panel
 Route::get('/profile', 'ProfileController@show')->name('profile');
 
 Route::get('/checklists', 'ChecklistController@index')->name('checklists');
@@ -26,3 +28,8 @@ Route::get('/checklists/{id}/tasks', 'TaskController@index')->name('tasks');
 Route::resource('checklist', 'ChecklistController');
 
 Route::resource('task', 'TaskController');
+
+//Admin panel
+Route::prefix('admin')->group(function () {
+    Route::get('panel', 'AdminController@show')->name('adminpanel');
+});
