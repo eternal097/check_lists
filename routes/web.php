@@ -31,5 +31,9 @@ Route::resource('task', 'TaskController');
 
 //Admin panel
 Route::prefix('admin')->group(function () {
-    Route::get('panel', 'AdminController@show')->name('adminpanel');
+    Route::get('/', 'AdminController@show')->name('adminpanel');
+
+    Route::get('/users', 'AdminController@showUserslist')->name('users');
+
+    Route::patch('/users/{id}}', 'AdminController@userUpdate')->name('userUpdate');
 });

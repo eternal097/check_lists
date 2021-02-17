@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a class="navbar-brand" href="{{ route('adminpanel') }}">
             Check Lists Service - Admin Panel
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -27,13 +27,13 @@
                     @endif
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('checklists') }}">{{ __('Users') }}</a>
+                    <a class="nav-link" href="{{ route('users') }}">{{ __('Users') }}</a>
                 </li>
-
+                @role('super-admin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile') }}">{{ __('Admins') }}</a>
                 </li>
-
+                @endrole
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile') }}">{{ __('Checklists') }}</a>
                 </li>

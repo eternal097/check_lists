@@ -39,6 +39,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Example Super-Admin User',
             'email' => 'superadmin@example.com',
             'password' => Hash::make('secret123'),
+            'max_checklist' => 10,
         ]);
         $user1->assignRole($superAdmin);
 
@@ -46,6 +47,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Example Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('secret123'),
+            'max_checklist' => 10,
         ]);
         $user2->assignRole($admin);
 
@@ -53,6 +55,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Example Admin User 2',
             'email' => 'admin2@example.com',
             'password' => Hash::make('secret123'),
+            'max_checklist' => 10,
         ]);
         $user3->assignRole($admin);
     }
