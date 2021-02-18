@@ -17,6 +17,7 @@
                             </ul>
                         </div>
                     @endif
+                    @if(count($checklists) < $max)
                     <form action="{{route('checklist.store')}}" method="POST">
                         @csrf
                         <div class="input-group mb-3 w-100">
@@ -28,6 +29,11 @@
                             <button class="btn btn-success" type="submit" id="bytton-addon2">Add checklist</button>
                         </div>
                     </form>
+                    @else
+                    <div class="alert alert-danger">
+                        <p>Maximum number of checklists: {{ $max }}</p>
+                    </div>
+                    @endif
                 </div>
             </div>
             <!-- Checklists card -->

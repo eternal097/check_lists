@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Checklist;
 use App\User;
 
 class AdminController extends Controller
@@ -40,14 +41,54 @@ class AdminController extends Controller
           return view('userslist', compact('users'));
       }
 
-      public function userUpdate(Request $request, $id)
+      public function showAdminslist()
       {
-        $user = User::find($id);
+          $admins = User::role('admin')->get();
 
-        $user->max_checklist = $request->max_checklist;
-        $user->save();
-
-        return back();
+          return view('adminslist', compact('admins'));
       }
 
+      public function allChecklists()
+      {
+          $checklists = Checklist::all();
+
+          return view('allChecklists', compact('checklists'));
+      }
+
+      public function userUpdate(Request $request, $id)
+      {
+          $user = User::find($id);
+
+          $user->max_checklist = $request->max_checklist;
+          $user->save();
+
+          return back();
+      }
+
+      public function roleUpdate(Request $request, $id)
+      {
+          $user = User::find($id);
+
+          foreach ($user->getRoleNames() as $role) {
+              $user->removeRole($role);
+          }
+          $user->assignRole($request->role);
+
+          return back();
+      }
+
+      public function permissionUpdate(Request $request, $id)
+      {
+          $admin = User::find($id);
+
+          if ($admin->hasPermissionTo($request->permission)) {
+
+              $admin->revokePermissionTo($request->permission);
+          } else {
+
+            $admin->givePermissionTo($request->permission);
+          }
+          
+          return back();
+      }
 }

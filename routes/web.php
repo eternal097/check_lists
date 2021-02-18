@@ -35,5 +35,13 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/users', 'AdminController@showUserslist')->name('users');
 
-    Route::patch('/users/{id}}', 'AdminController@userUpdate')->name('userUpdate');
+    Route::get('/admins', 'AdminController@showAdminslist')->name('admins');
+
+    Route::get('/checklists', 'AdminController@allChecklists')->name('allChecklists');
+
+    Route::patch('/user/{id}}', 'AdminController@userUpdate')->name('userUpdate');
+
+    Route::patch('/role/{id}}', 'AdminController@roleUpdate')->name('roleUpdate');
+
+    Route::patch('/permission/{id}}', 'AdminController@permissionUpdate')->name('permissionUpdate');
 });

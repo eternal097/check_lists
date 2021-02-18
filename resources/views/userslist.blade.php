@@ -14,7 +14,9 @@
                           <th scope="col">#id</th>
                           <th scope="col">Name</th>
                           <th scope="col">Email</th>
+                          @can('manage checklists')
                           <th scope="col">Maximum checklists</th>
+                          @endcan
                           <th scope="col">Status</th>
                         </tr>
                       </thead>
@@ -24,6 +26,7 @@
                           <td>{{ $user->id }}</td>
                           <td>{{ $user->name }}</td>
                           <td>{{ $user->email }}</td>
+                          @can('manage checklists')
                           <td>
                             <form action="{{route('userUpdate', $user->id)}}" method="POST">
                               @csrf
@@ -37,10 +40,22 @@
                               <button class="btn btn-primary btn-sm" type="submit" name="button">Edit</button>
                             </form>
                           </td>
+                          @endcan
                           <td>
-                            @foreach(App\User::find($user->id)->getRoleNames() as $role)
-                                {{ $role }}
-                            @endforeach
+                            <form action="{{route('roleUpdate', $user->id)}}" method="POST">
+                              @csrf
+                              @method('PATCH')
+                              <select class="form-select" aria-label="Default select example" name="role">
+                                <option selected>
+                                  @foreach(App\User::find($user->id)->getRoleNames() as $role)
+                                      {{ ucfirst($role) }}
+                                  @endforeach
+                                </option>
+                                <option value="user">User</option>
+                                <option value="blocked">Blocked</option>
+                              </select>
+                              <button class="btn btn-primary btn-sm" type="submit" name="button">Edit</button>
+                            </form>
                           </td>
                         </tr>
                         @endforeach

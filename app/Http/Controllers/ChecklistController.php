@@ -29,11 +29,12 @@ class ChecklistController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
+        $user = User::find(Auth::id());
 
-        $checklists = User::find($user_id)->checklists;
+        $checklists = $user->checklists;
+        $max = $user->max_checklist;
 
-        return view('checklists', compact('checklists'));
+        return view('checklists', compact('checklists', 'max'));
     }
 
     /**
@@ -89,7 +90,7 @@ class ChecklistController extends Controller
 
         if ($user_checklists->contains($checklist)) {
 
-            return view('checkedit')->with('checklist', $checklist);
+            return view('checkedit', compact('checklist'));
 
         } else {
 
