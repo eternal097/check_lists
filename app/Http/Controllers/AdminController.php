@@ -52,7 +52,14 @@ class AdminController extends Controller
       {
           $checklists = Checklist::all();
 
-          return view('allChecklists', compact('checklists'));
+          return view('allchecklists', compact('checklists'));
+      }
+
+      public function showTasks($checklist_id)
+      {
+          $tasks = Checklist::find($checklist_id)->tasks;
+
+          return view('usertasks', compact('checklist_id', 'tasks'));
       }
 
       public function userUpdate(Request $request, $id)
@@ -88,7 +95,7 @@ class AdminController extends Controller
 
             $admin->givePermissionTo($request->permission);
           }
-          
+
           return back();
       }
 }

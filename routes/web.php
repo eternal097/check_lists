@@ -37,6 +37,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/admins', 'AdminController@showAdminslist')->name('admins');
 
+    Route::get('/checklists/{id}/tasks', 'AdminController@showTasks')->name('userTasks');
+
     Route::get('/checklists', 'AdminController@allChecklists')->name('allChecklists');
 
     Route::patch('/user/{id}}', 'AdminController@userUpdate')->name('userUpdate');
