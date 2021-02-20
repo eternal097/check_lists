@@ -29,6 +29,7 @@ class AdminController extends Controller
       public function show()
       {
           $user = User::find(Auth::id());
+
           $roles = $user->getRoleNames();
 
           return view('adminpanel', compact('roles'));
