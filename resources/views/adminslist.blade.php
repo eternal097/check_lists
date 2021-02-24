@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Users list</div>
+                <div class="card-header">Admins list</div>
                 <div class="card-body">
                   @if(count($admins) != 0)
                   <table class="table">
